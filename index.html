@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fiesta de Graduación 2026</title>
+
+<!-- ★★★★★ VISTA PREVIA AL COMPARTIR POR WHATSAPP ★★★★★
+     Cuando tengas tu link final, reemplazá TU-LINK por el link real, por ejemplo:
+     https://promo2026.netlify.app/imagenes/portada.png -->
+<meta property="og:title" content="Fiesta de Graduación 2026">
+<meta property="og:description" content="Sábado 12 de diciembre · 21:00 hs · Allegro Maison, Asunción">
+<meta property="og:image" content="https://TU-LINK/imagenes/portada.png">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Pinyon+Script&display=swap">
+<style>
+
+/* ═══════════════════════════════════════════════════════════
+   ★★★★★  AJUSTES FÁCILES — CAMBIÁ SOLO ESTOS NÚMEROS  ★★★★★
+   ═══════════════════════════════════════════════════════════ */
+:root{
+  --color-letras: #ae8a5a;            /* ★ color de letras elegantes */
+
+  --ancho-imagenes: 68%;              /* ★ TAMAÑO de fiesta, ubicación, tenida y calendario (más % = más grande) */
+  --ancho-encabezado: 72%;            /* ★ TAMAÑO de los adornos separadores */
+
+  --espacio-sobre-encabezado: 64px;   /* ★ ESPACIO entre el PNG de ARRIBA y el adorno */
+  --espacio-bajo-encabezado: 48px;    /* ★ ESPACIO entre el adorno y el PNG de ABAJO */
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ★★★★★  FONDO NEGRO Y ROJO VINO  ★★★★★
+   Cada color tiene un % = posición en la página (0% arriba, 100% abajo).
+   Para MÁS rojo: usá un color más fuerte (ej. #7a122c) o separá más los %.
+   Para MENOS rojo: usá uno más oscuro (ej. #3a0b19).
+   ═══════════════════════════════════════════════════════════ */
+html{background:#07070a}
+body{
+  background:linear-gradient(180deg,
+    #07070a 0%,
+    #5c0e22 10%,
+    #6e1128 20%,
+    #14070b 32%,
+    #14070b 38%,
+    #701028 50%,
+    #7a122c 58%,
+    #14070b 70%,
+    #14070b 74%,
+    #66102a 86%,
+    #4a0b1c 100%);
+}
+
+/* ─────────── estilos generales (no hace falta tocar) ─────────── */
+:root{color-scheme:dark;--vino:#3d0a14;--vino2:#6e1423;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;color:var(--color-letras);text-align:center;font-family:Cinzel,Georgia,serif}
+img{display:block;max-width:100%;height:auto;margin:0 auto}
+.wrap{max-width:440px;margin:0 auto;padding:0 20px 40px}
+
+/* tamaños de las imágenes */
+main img:not(.sep):not(.pie){width:var(--ancho-imagenes)}
+main img.portada{width:calc(100% + 40px);max-width:none;margin:0 -20px}   /* la portada ocupa todo el ancho */
+.sep{width:var(--ancho-encabezado);margin:var(--espacio-sobre-encabezado) auto var(--espacio-bajo-encabezado)}
+.pie{width:70%;margin:var(--espacio-sobre-encabezado) auto 40px}
+
+/* pantalla de entrada */
+#gate{position:fixed;inset:0;z-index:99;background:#050506;display:flex;align-items:center;justify-content:center;padding:30px}
+#gate button{background:none;border:0;color:var(--color-letras);font:400 34px/1.35 "Pinyon Script",cursive;cursor:pointer;padding:20px}
+#gate button:focus-visible,.btn:focus-visible{outline:2px solid var(--color-letras);outline-offset:4px}
+
+/* cuenta regresiva */
+h2{font:400 54px/1.1 "Pinyon Script",cursive;color:var(--color-letras);margin:0 0 6px}
+.count{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:18px 0 6px}
+.count div{border:1px solid var(--vino2);border-radius:12px;padding:14px 2px 10px;background:rgba(110,20,35,.25)}
+.count b{display:block;font:400 40px Cinzel,serif;font-variant-numeric:tabular-nums}
+.count span{font:600 10px Cinzel,serif;letter-spacing:.2em;text-transform:uppercase}
+#msg{font:400 34px "Pinyon Script",cursive;margin:14px 0}
+
+/* botón ver ubicación */
+.btn{display:inline-block;margin-top:16px;padding:13px 34px;border:1px solid var(--color-letras);border-radius:12px;background:var(--vino);color:var(--color-letras);text-decoration:none;font:600 13px Cinzel,serif;letter-spacing:.22em;box-shadow:0 10px 18px -8px rgba(0,0,0,.9)}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ★★★★★  MÚSICA  ★★★★★
+     1) Guardá tu canción en la carpeta "musica" con el nombre exacto: cancion.mp3
+     2) Si tu archivo tiene otro nombre, cambialo acá abajo en src="..."
+     3) Suena cuando la persona toca la pantalla de entrada.
+     ═══════════════════════════════════════════════════════════ -->
+<audio id="musica" src="musica/cancion.mp3" loop preload="auto"></audio>
+
+
+<!-- ═══════════ 1. PANTALLA DE ENTRADA (el texto que se toca para abrir) ═══════════ -->
+<div id="gate"><button id="go">Toca aquí…<br>¡y que comience<br>la cuenta regresiva!</button></div>
+
+<main class="wrap">
+
+  <!-- ═══════════ 2. PORTADA ═══════════ -->
+  <img class="portada" src="imagenes/portada.png" alt="Promoción 2026, Informática. Colegio Técnico Vocacional" width="1055" height="1491">
+
+  <!-- ═══════════ ADORNO DE ENCABEZADO (el espacio se cambia arriba, en AJUSTES FÁCILES) ═══════════ -->
+  <img class="sep" src="imagenes/encabezado.png" alt="" width="918" height="73">
+
+  <!-- ═══════════ 3. CUENTA REGRESIVA ═══════════ -->
+  <section>
+    <h2>Cuenta regresiva</h2>
+    <div class="count" id="count" aria-live="polite">
+      <div><b id="d">--</b><span>Días</span></div>
+      <div><b id="h">--</b><span>Horas</span></div>
+      <div><b id="m">--</b><span>Min</span></div>
+      <div><b id="s">--</b><span>Seg</span></div>
+    </div>
+    <div id="msg" hidden></div>
+  </section>
+
+  <img class="sep" src="imagenes/encabezado.png" alt="" width="918" height="73">
+
+  <!-- ═══════════ 4. FIESTA ═══════════ -->
+  <img src="imagenes/fiesta.png" alt="Fiesta de Graduación, sábado 12 de diciembre, 21:00 horas" width="1102" height="1108">
+
+  <img class="sep" src="imagenes/encabezado.png" alt="" width="918" height="73">
+
+  <!-- ═══════════ 5. UBICACIÓN + BOTÓN ═══════════
+       ★ Para cambiar el link de Google Maps, editá href="..." del botón de abajo ★ -->
+  <section>
+    <img src="imagenes/ubicacion.png" alt="Ubicación: Allegro Maison, Asunción" width="745" height="712">
+    <a class="btn" href="https://maps.app.goo.gl/biaWVwmXaocFf5eq6" target="_blank" rel="noopener">VER UBICACIÓN</a>
+  </section>
+
+  <img class="sep" src="imagenes/encabezado.png" alt="" width="918" height="73">
+
+  <!-- ═══════════ 6. TENIDA ═══════════ -->
+  <img src="imagenes/vestimenta.png" alt="Tenida elegante. El color rojo vino se reserva para los egresados" width="854" height="877">
+
+  <img class="sep" src="imagenes/encabezado.png" alt="" width="918" height="73">
+
+  <!-- ═══════════ 7. CONFIRMAR ASISTENCIA (CALENDARIO) ═══════════ -->
+  <img src="imagenes/calendario.png" alt="Confirma tu asistencia antes del 30 de noviembre" width="905" height="906">
+
+  <!-- ═══════════ 8. ADORNO DE PIE DE PÁGINA ═══════════ -->
+  <img class="pie" src="imagenes/pie.png" alt="" width="917" height="72">
+
+</main>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   ★★★★★  FECHA DE LA CUENTA REGRESIVA  ★★★★★
+   Formato: new Date(AÑO, MES-1, DÍA, HORA, MINUTOS)
+   (OJO: el mes empieza en 0. Diciembre = 11)
+   Ahora: 12 de diciembre de 2026, 21:00
+   ═══════════════════════════════════════════════════════════ */
+var FECHA_FIESTA = new Date(2026, 11, 12, 21, 0, 0);
+
+(function(){
+  var gate = document.getElementById("gate");
+  var musica = document.getElementById("musica");
+  document.body.style.overflow = "hidden";
+
+  /* Al tocar la pantalla de entrada: se abre la invitación y empieza la música */
+  document.getElementById("go").onclick = function(){
+    gate.remove();
+    document.body.style.overflow = "";
+    try { var p = musica.play(); if (p && p.catch) p.catch(function(){}); } catch(e){}
+  };
+
+  var target = FECHA_FIESTA.getTime();
+  var ids = ["d","h","m","s"].map(function(i){ return document.getElementById(i); });
+  var box = document.getElementById("count"), msg = document.getElementById("msg");
+  function p(n){ return n < 10 ? "0" + n : "" + n; }
+  function tick(){
+    var t = target - Date.now();
+    if (t <= 0){
+      box.hidden = true; msg.hidden = false;
+      msg.textContent = (Date.now() - target < 86400000) ? "¡La fiesta ya comenzó!" : "¡Gracias por acompañarnos!";
+      return;
+    }
+    var s = Math.floor(t / 1000);
+    ids[0].textContent = Math.floor(s / 86400);
+    ids[1].textContent = p(Math.floor(s % 86400 / 3600));
+    ids[2].textContent = p(Math.floor(s % 3600 / 60));
+    ids[3].textContent = p(s % 60);
+  }
+  tick(); setInterval(tick, 1000);
+})();
+</script>
+</body>
+</html>
